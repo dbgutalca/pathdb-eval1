@@ -39,5 +39,21 @@ All experiments were conducted on a dedicated server with the following configur
 This experiment compares PathDB with two traversal-based baseline algorithms.
 The baseline algorithm for evaluating regular path queries is automata-based graph traversal, often called the product-graph algorithm.
 We implemented two variants of the automata-based approach: DFS+A and BFS+A, which differ in the search strategy used to explore the product graph. DFS+A performs a depth-first traversal, while BFS+A uses breadth-first search.
-Both baselines were designed to support the same class of regular path queries as PathDB and enforce identical path restrictors (Walk, Trail, Simple, and Acyclic). No indexing or pruning techniques beyond those strictly required by the restrictors were applied, ensuring that the comparison focuses exclusively on the evaluation strategy rather than optimizations.
+Both baselines were designed to support the same class of regular path queries as PathDB and enforce identical path restrictors (Walk, Trail, Simple, and Acyclic). No indexing or pruning techniques beyond those strictly required by the restrictors were applied, ensuring that the comparison focuses exclusively on the evaluation strategy rather than optimizations. The Github project [graph-automata](https://github.com/dbgutalca/graph-automata) contains the implementation of the baselines.
+
+The following Table shows the results for Experiment 1. For each abstract query, the average query execution times (in seconds) obtained by DFS+A, BFS+A, and PathDB. A superscript corresponds to the number of incomplete executions (due to errors or timeouts).
+
+<img width="468" height="600" alt="Exp1" src="https://github.com/user-attachments/assets/ee1e8d7c-89c8-4c98-a3c8-8ec5d055925d" />
+
+Overall, PathDB consistently outperforms both traversal-based baselines across all queries, often by a substantial margin.
+The observed performance gap can be attributed to fundamental differences in the evaluation strategies. Traversal-based algorithms explore the product graph formed by the input graph and the query automaton. During this exploration, the algorithms repeatedly revisit overlapping subpaths and states, resulting in redundant computations and increased execution time. In contrast, PathDB evaluates queries using algebraic operators that explicitly represent path composition and recursion. This formulation enables the systematic reuse of intermediate results, reducing redundant exploration and improving overall efficiency.
+
+It is important to mention that the results of this experiment correspond to the queries using the Trail restrictor as it is the most used by current graph database systems.
+
+
+### Experiment 2: Comparison with similar systems
+This experiment compares PathDB with representative state-of-the-art graph database systems that support regular path queries. 
+We selected the following systems: Neo4j Community Edition (Version 5.26.0), Memgraph (Version 2.21.0), and Kùzu (Version 0.7.0).
+
+
 

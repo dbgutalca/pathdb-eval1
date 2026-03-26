@@ -55,7 +55,7 @@ It is important to mention that the results of this experiment correspond to the
 This experiment compares PathDB with representative state-of-the-art graph database systems that support regular path queries. 
 We selected the following systems: Neo4j Community Edition (Version 5.26.0), Memgraph (Version 2.21.0), and Kùzu (Version 0.7.0).
 
-The results of Experiment 2 can be observed in the table below. For each abstract query, the table shows the average query execution times (in seconds) obtained by the evaluated systems (PathDB, Kuzu, Neo4j, and Memagraph), and considering different path restrictors (Walk, Trail, Simple, Acyclic). The symbol ``-'' denotes an unsupported query, and a superscript indicates the number of incomplete executions (due to errors or timeouts).
+The results of Experiment 2 can be observed in the table below. For each abstract query, the table shows the average query execution times (in seconds) obtained by the evaluated systems (PathDB, Kuzu, Neo4j, and Memgraph), and considering different path restrictors (Walk, Trail, Simple, Acyclic). The symbol ``-'' denotes an unsupported query, and a superscript indicates the number of incomplete executions (due to errors or timeouts).
 
 <img width="922" height="607" alt="Exp2" src="https://github.com/user-attachments/assets/ad516bd9-4857-4f06-868b-f81182c684bf" />
 
